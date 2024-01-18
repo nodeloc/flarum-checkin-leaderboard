@@ -29,7 +29,7 @@ class ListCheckinLeaderboardController extends AbstractListController{
         $endOfDay = Carbon::now()->endOfDay();
 
         if($allowViewLeaderBoard){
-            $checkinLeaderboardResult = User::whereBetween('last_checkin_time', [$startOfDay, $endOfDay])
+            $checkinLeaderboardResult = User::where('last_checkin_time', '>', $startOfDay)
                 ->skip($offset)
                 ->take($limit + 1)
                 ->orderBy('last_checkin_money', 'desc')

@@ -7,7 +7,7 @@ export default class CheckinLeaderboardListItem extends Component {
   view() {
     const {leaderboardListItem,rankID} = this.attrs;
     const moneyName = app.forum.attribute('antoinefr-money.moneyname') || '[money]';
-    let moneyValue = leaderboardListItem.attribute("last_checkin_money");
+    let moneyValue = leaderboardListItem.attribute("lastCheckinMoney");
     moneyValue = Math.min(Math.max(1, Math.round(moneyValue)), 10);
 
     const idioms = {

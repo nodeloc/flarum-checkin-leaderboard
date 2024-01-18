@@ -5,19 +5,19 @@ import Button from 'flarum/common/components/Button';
 
 export default function () {
   extend(HeaderSecondary.prototype, 'items', function (items) {
-    const moneyLeaderBoardIcon = app.forum.attribute("moneyLeaderBoardIcon");
+    const checkinLeaderBoardIcon = app.forum.attribute("checkinLeaderBoardIcon");
 
     items.add(
-      'MoneyLeaderboard',
+      'CheckinLeaderboard',
       <Button
         className="Button Button--flat"
         style="width:36px"
         onclick={() => {
-          window.location.href = app.route('moneyLeaderboard');
+          window.location.href = app.route('checkinLeaderboard');
         }}
-        icon={moneyLeaderBoardIcon}
+        icon={checkinLeaderBoardIcon}
       >
-        {app.translator.trans('ziven-money-leaderboard.forum.leaderboard-name')}
+        {app.translator.trans('nodeloc-checkin-leaderboard.forum.leaderboard-name')}
       </Button>,
       15
     );

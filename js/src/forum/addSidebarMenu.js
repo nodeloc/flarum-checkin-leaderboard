@@ -5,12 +5,12 @@ import LinkButton from 'flarum/components/LinkButton';
 
 export default function addSidebarMenu() {
   extend(IndexPage.prototype, 'navItems', function (items) {
-    const moneyLeaderBoardIcon = app.forum.attribute("moneyLeaderBoardIcon");
+    const checkinLeaderBoardIcon = app.forum.attribute("checkinLeaderBoardIcon");
 
     items.add(
-      'MoneyLeaderboard',
-      <LinkButton icon={moneyLeaderBoardIcon} href={app.route('moneyLeaderboard')}>
-        {app.translator.trans('ziven-money-leaderboard.forum.leaderboard-name')}
+      'CheckinLeaderboard',
+      <LinkButton icon={checkinLeaderBoardIcon} href={app.route('checkinLeaderboard')}>
+        {app.translator.trans('nodeloc-checkin-leaderboard.forum.leaderboard-name')}
       </LinkButton>,
       15
     );

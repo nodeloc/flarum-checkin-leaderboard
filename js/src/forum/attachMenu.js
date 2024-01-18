@@ -10,11 +10,11 @@ export default function () {
     const allowViewLeaderboard = app.forum.attribute('allowViewLeaderbaord');
 
     if(allowViewLeaderboard){
-      let moneyLeaderBoardEntryPosition = app.forum.attribute("moneyLeaderBoardEntryPosition");
+      let checkinLeaderBoardEntryPosition = app.forum.attribute("checkinLeaderBoardEntryPosition");
 
-      if(moneyLeaderBoardEntryPosition==0){
+      if(checkinLeaderBoardEntryPosition==0){
         addSidebarMenu();
-      }else if(moneyLeaderBoardEntryPosition==1){
+      }else if(checkinLeaderBoardEntryPosition==1){
         addTopRightMenu();
       }
     }

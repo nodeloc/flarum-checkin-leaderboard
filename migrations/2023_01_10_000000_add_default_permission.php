@@ -3,6 +3,6 @@
 use Flarum\Database\Migration;
 
 return Migration::addSettings([
-    'ziven-money-leaderboard.moneyLeaderBoardIcon' => 'fas fa-sort-amount-up',
-    'ziven-money-leaderboard.moneyLeaderBoardEntryPosition' => 0
+    'nodeloc-checkin-leaderboard.checkinLeaderBoardIcon' => 'fas fa-sort-amount-up',
+    'nodeloc-checkin-leaderboard.checkinLeaderBoardEntryPosition' => 0
 ]);

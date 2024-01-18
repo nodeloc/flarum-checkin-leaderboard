@@ -1,10 +1,11 @@
-ziven-money-leaderboard:
+nodeloc-checkin-leaderboard:
   forum:
-    leaderboard-name: Money Leaderboard
-    leaderboard-list-title: Money Leaderboard
+    leaderboard-name: LuckyBoard
+    leaderboard-list-title: Check in Lucky Leaderboard
     leaderboard-list-rank: Rank
     leaderboard-list-user: User
-    leaderboard-list-money: Money Owned
+    leaderboard-list-lucky: Lucky
+    leaderboard-list-money: Reward
     leaderboard-load-more: Load More
     leaderboard-list-empty: There is no content
   admin:

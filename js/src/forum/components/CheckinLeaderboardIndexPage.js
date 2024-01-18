@@ -4,17 +4,17 @@ import listItems from 'flarum/common/helpers/listItems';
 import LoadingIndicator from "flarum/components/LoadingIndicator";
 import Button from 'flarum/components/Button';
 
-import MoneyLeaderboardListItem from "./MoneyLeaderboardListItem";
+import CheckinLeaderboardListItem from "./CheckinLeaderboardListItem";
 
-export default class MoneyLeaderboardIndexPage extends Page {
+export default class CheckinLeaderboardIndexPage extends Page {
   oninit(vnode) {
     super.oninit(vnode);
     this.loading = true;
     this.moreResults = false;
-    this.moneyLeaderboardList = [];
+    this.checkinLeaderboardList = [];
     this.totalLoadCount = 0;
 
-    this.additionalInfo = app.forum.attribute("moneyLeaderBoardAdditionalInfo");
+    this.additionalInfo = app.forum.attribute("checkinLeaderBoardAdditionalInfo");
     this.maxLoadCount = app.forum.attribute("leaderboardMaxLoadCount") || 50;
     this.initloadCount = app.forum.attribute("leaderboardInitLoadCount") || 20;
     this.loadMoreCount = app.forum.attribute("leaderboardLoadMoreCount") || 10;
@@ -23,7 +23,7 @@ export default class MoneyLeaderboardIndexPage extends Page {
 
   oncreate(vnode) {
     super.oncreate(vnode);
-    const titleText = app.translator.trans("ziven-money-leaderboard.forum.leaderboard-list-title");
+    const titleText = app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-title");
     app.setTitle(titleText);
     app.setTitleCount(0);
     $(".item-nav button .Button-label").text(titleText);
@@ -38,7 +38,7 @@ export default class MoneyLeaderboardIndexPage extends Page {
     }
 
     return (
-      <div className="MoneyLeaderboardPage">
+      <div className="CheckinLeaderboardPage">
         {IndexPage.prototype.hero()}
 
         <div className="container">
@@ -47,48 +47,48 @@ export default class MoneyLeaderboardIndexPage extends Page {
               <ul>{listItems(IndexPage.prototype.sidebarItems().toArray())}</ul>
             </nav>
 
-            <div class="MoneyLeaderboardContainer">
-              <div class="MoneyLeaderboardListTitle">
-                {app.translator.trans("ziven-money-leaderboard.forum.leaderboard-list-title")}
+            <div class="CheckinLeaderboardContainer">
+              <div class="CheckinLeaderboardListTitle">
+                {app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-title")}
               </div>
 
               {this.additionalInfo && this.additionalInfo.length>0 && (
-                <p class="MoneyLeaderboardListAdditionalInformation">{this.additionalInfo}</p>
+                <p class="CheckinLeaderboardListAdditionalInformation">{this.additionalInfo}</p>
               )}
 
-              <div class="MoneyLeaderboardListHeader">
-                <div class="MoneyLeaderboardListHeaderRank">{app.translator.trans("ziven-money-leaderboard.forum.leaderboard-list-rank")}</div>
-                <div class="MoneyLeaderboardListHeaderUser">{app.translator.trans("ziven-money-leaderboard.forum.leaderboard-list-user")}</div>
-                <div class="MoneyLeaderboardListHeaderMoney">{app.translator.trans("ziven-money-leaderboard.forum.leaderboard-list-money")}</div>
+              <div class="CheckinLeaderboardListHeader">
+                <div class="CheckinLeaderboardListHeaderRank">{app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-rank")}</div>
+                <div class="CheckinLeaderboardListHeaderUser">{app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-user")}</div>
+                <div class="CheckinLeaderboardListHeaderLucky">{app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-lucky")}</div>
+                <div class="CheckinLeaderboardListHeaderMoney">{app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-money")}</div>
               </div>
 
-              <ul class="MoneyLeaderboardList">
-                {this.moneyLeaderboardList.map((leaderboardListItem) => {
+              <ul class="CheckinLeaderboardList">
+                {this.checkinLeaderboardList.map((leaderboardListItem) => {
                   rankID++;
-
                   return (
-                    <li class="MoneyLeaderboardListItems">
-                      {MoneyLeaderboardListItem.component({ leaderboardListItem, rankID })}
+                    <li class="CheckinLeaderboardListItems">
+                      {CheckinLeaderboardListItem.component({ leaderboardListItem, rankID })}
                     </li>
                   );
                 })}
               </ul>
 
-              {!this.loading && this.moneyLeaderboardList.length===0 && (
+              {!this.loading && this.checkinLeaderboardList.length===0 && (
                 <div>
-                  <div style="font-size:1.4em;color: var(--muted-more-color);text-align: center;height: 300px;line-height: 100px;">{app.translator.trans("ziven-money-leaderboard.forum.leaderboard-list-empty")}</div>
+                  <div style="font-size:1.4em;color: var(--muted-more-color);text-align: center;height: 300px;line-height: 100px;">{app.translator.trans("nodeloc-checkin-leaderboard.forum.leaderboard-list-empty")}</div>
                 </div>
               )}
 
               {!loading && this.hasMoreResults() && (
                 <div style="text-align:center;padding:20px">
                   <Button className={'Button Button--primary'} disabled={this.loading} loading={this.loading} onclick={() => this.loadMore()}>
-                    {app.translator.trans('ziven-money-leaderboard.forum.leaderboard-load-more')}
+                    {app.translator.trans('nodeloc-checkin-leaderboard.forum.leaderboard-load-more')}
                   </Button>
                 </div>
               )}
 
-              {loading && <div className="MoneyLeaderboard-loadMore">{loading}</div>}
+              {loading && <div className="CheckinLeaderboard-loadMore">{loading}</div>}
             </div>
           </div>
         </div>
@@ -102,12 +102,12 @@ export default class MoneyLeaderboardIndexPage extends Page {
 
   loadMore() {
     this.loading = true;
-    this.loadResults(this.moneyLeaderboardList.length,this.loadMoreCount);
+    this.loadResults(this.checkinLeaderboardList.length,this.loadMoreCount);
   }
 
   parseResults(results) {
     this.moreResults = !!results.payload.links && !!results.payload.links.next;
-    [].push.apply(this.moneyLeaderboardList, results);
+    [].push.apply(this.checkinLeaderboardList, results);
     this.loading = false;
     m.redraw();
 
@@ -129,7 +129,7 @@ export default class MoneyLeaderboardIndexPage extends Page {
     this.totalLoadCount+=loadCount;
 
     return app.store
-      .find("moneyLeaderboard", {
+      .find("checkinLeaderboard", {
         page: {
           offset,
           limit

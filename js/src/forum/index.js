@@ -1,12 +1,12 @@
 import app from 'flarum/forum/app';
 import { extend } from 'flarum/extend';
 import attachMenu from './attachMenu';
-import MoneyLeaderboardIndexPage from './components/MoneyLeaderboardIndexPage';
+import CheckinLeaderboardIndexPage from './components/CheckinLeaderboardIndexPage';
 
-app.initializers.add('ziven-money-leaderboard', () => {
-  app.routes['moneyLeaderboard'] = {
-    path: '/moneyLeaderboard',
-    component: MoneyLeaderboardIndexPage,
+app.initializers.add('nodeloc-checkin-leaderboard', () => {
+  app.routes['checkinLeaderboard'] = {
+    path: '/checkinLeaderboard',
+    component: CheckinLeaderboardIndexPage,
   };
 
   attachMenu();

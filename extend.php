@@ -2,32 +2,32 @@
 
 use Flarum\Extend;
 use Flarum\Api\Serializer\ForumSerializer;
-use Ziven\MoneyLeaderboard\Controllers\MoneyLeaderboardController;
-use Ziven\MoneyLeaderboard\Controllers\ListMoneyLeaderboardController;
+use Nodeloc\CheckinLeaderboard\Controllers\CheckinLeaderboardController;
+use Nodeloc\CheckinLeaderboard\Controllers\ListCheckinLeaderboardController;
 
 $extend = [
     (new Extend\Frontend('admin'))->js(__DIR__.'/js/dist/admin.js'),
     (new Extend\Frontend('forum'))->js(__DIR__ . '/js/dist/forum.js')->css(__DIR__.'/less/forum.less')
-        ->route('/moneyLeaderboard', 'moneyLeaderboard.index', MoneyLeaderboardController::class),
+        ->route('/checkinLeaderboard', 'checkinLeaderboard.index', CheckinLeaderboardController::class),
 
     (new Extend\Locales(__DIR__ . '/locale')),
 
     (new Extend\ApiSerializer(ForumSerializer::class))
         ->attribute('allowViewLeaderbaord', function (ForumSerializer $serializer) {
-            return $serializer->getActor()->hasPermission("moneyLeaderboard.allowViewLeaderbaord");
+            return $serializer->getActor()->hasPermission("checkinLeaderboard.allowViewLeaderbaord");
         }),
 
     (new Extend\Routes('api'))
-        ->get('/moneyLeaderboard', 'moneyLeaderboard.get', ListMoneyLeaderboardController::class),
+        ->get('/checkinLeaderboard', 'checkinLeaderboard.get', ListCheckinLeaderboardController::class),
 
     (new Extend\Settings())
-        ->serializeToForum('moneyLeaderBoardIcon', 'ziven-money-leaderboard.moneyLeaderBoardIcon')
-        ->serializeToForum('moneyLeaderBoardEntryPosition', 'ziven-money-leaderboard.moneyLeaderBoardEntryPosition')
-        ->serializeToForum('moneyLeaderBoardAdditionalInfo', 'ziven-money-leaderboard.moneyLeaderBoardAdditionalInfo')
-        ->serializeToForum('moneyLeaderBoardHideMoneyText', 'ziven-money-leaderboard.moneyLeaderBoardHideMoneyText')
-        ->serializeToForum('leaderboardMaxLoadCount', 'ziven-money-leaderboard.leaderboardMaxLoadCount', 'intval')
-        ->serializeToForum('leaderboardInitLoadCount', 'ziven-money-leaderboard.leaderboardInitLoadCount', 'intval')
-        ->serializeToForum('leaderboardLoadMoreCount', 'ziven-money-leaderboard.leaderboardLoadMoreCount', 'intval'),
+        ->serializeToForum('checkinLeaderBoardIcon', 'nodeloc-checkin-leaderboard.checkinLeaderBoardIcon')
+        ->serializeToForum('checkinLeaderBoardEntryPosition', 'nodeloc-checkin-leaderboard.checkinLeaderBoardEntryPosition')
+        ->serializeToForum('checkinLeaderBoardAdditionalInfo', 'nodeloc-checkin-leaderboard.checkinLeaderBoardAdditionalInfo')
+        ->serializeToForum('checkinLeaderBoardHideMoneyText', 'nodeloc-checkin-leaderboard.checkinLeaderBoardHideMoneyText')
+        ->serializeToForum('leaderboardMaxLoadCount', 'nodeloc-checkin-leaderboard.leaderboardMaxLoadCount', 'intval')
+        ->serializeToForum('leaderboardInitLoadCount', 'nodeloc-checkin-leaderboard.leaderboardInitLoadCount', 'intval')
+        ->serializeToForum('leaderboardLoadMoreCount', 'nodeloc-checkin-leaderboard.leaderboardLoadMoreCount', 'intval'),
 ];
 
 return $extend;
